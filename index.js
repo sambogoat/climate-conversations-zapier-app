@@ -1,4 +1,22 @@
-const search = require('./searches/recipe');
+const people = require('./searches/people');
+const authentication = require('./authentication');
+
+const handleHTTPError = (response, z) => {
+  if (response.status >= 400) {
+    throw new Error(`Unexpected status code ${response.status}`);
+  }
+  return response;
+};
+
+const includeApiKeyHeader = (request, z, bundle) => {
+
+  z.console.log(bundle);
+  
+  if (bundle.authData.apiKey) {
+    request.headers.authorization = bundle.authData.apiKey;
+  }
+  return request;
+};
 
 // Now we can roll up all our behaviors in an App.
 const App = {
@@ -7,10 +25,14 @@ const App = {
   version: require('./package.json').version,
   platformVersion: require('zapier-platform-core').version,
 
+  authentication: authentication,
+
   beforeRequest: [
+    includeApiKeyHeader
   ],
 
   afterResponse: [
+    handleHTTPError
   ],
 
   resources: {
@@ -22,7 +44,7 @@ const App = {
 
   // If you want your searches to show up, you better include it here!
   searches: {
-    [search.key]: search
+    [people.key]: people
   },
 
   // If you want your creates to show up, you better include it here!

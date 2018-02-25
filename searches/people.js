@@ -1,12 +1,12 @@
 module.exports = {
-  key: 'recipe',
+  key: 'people',
 
   // You'll want to provide some helpful display labels and descriptions
   // for users. Zapier will put them into the UX.
-  noun: 'Recipe',
+  noun: 'People',
   display: {
-    label: 'Find a Recipe',
-    description: 'Search for recipe by cuisine style.'
+    label: 'Find a Person',
+    description: 'Search for person by email address.'
   },
 
   // `operation` is where we make the call to your API to do the search
@@ -15,28 +15,29 @@ module.exports = {
     // search fields.
     inputFields: [
       {
-        key: 'style',
+        key: 'email',
         type: 'string',
-        label: 'Style',
-        helpText: 'Cuisine style to limit to the search to (i.e. mediterranean or italian).'
+        label: 'Email Address',
+        helpText: 'Email address of the url.'
       }
     ],
 
     perform: (z, bundle) => {
-      const url = 'http://57b20fb546b57d1100a3c405.mockapi.io/api/recipes';
+      const url = 'https://api.kepla.com/v1/types/7c12b42d-26eb-43c7-a3d1-25045869cbf6/search';
 
       // Put the search value in a query param. The details of how to build
       // a search URL will depend on how your API works.
       const options = {
         params: {
-          search: bundle.inputData.style
+          q: 'primaryKey:"' + bundle.inputData.email + '"',
+          typeId: 'c12b42d-26eb-43c7-a3d1-25045869cbf6'
         }
       };
 
       return z.request(url, options)
-        .then(response => JSON.parse(response.content));
+        .then(response => [JSON.parse(response.content)]);
     },
-    
+
     // In cases where Zapier needs to show an example record to the user, but we are unable to get a live example
     // from the API, Zapier will fallback to this hard-coded sample. It should reflect the data structure of
     // returned records, and have obviously dummy values that we can show to any user.
@@ -56,10 +57,7 @@ module.exports = {
     outputFields: [
       {key: 'id', label: 'ID'},
       {key: 'createdAt', label: 'Created At'},
-      {key: 'name', label: 'Name'},
-      {key: 'directions', label: 'Directions'},
-      {key: 'authorId', label: 'Author ID'},
-      {key: 'style', label: 'Style'}
+      {key: 'primaryKey', label: 'Email Address'}
     ]
   }
 };
