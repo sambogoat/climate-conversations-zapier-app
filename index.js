@@ -1,5 +1,6 @@
-const people = require('./searches/people');
-const authentication = require('./authentication');
+const ActivityCreate = require('./creates/activity');
+const PeopleSearch = require('./searches/people');
+const Authentication = require('./authentication');
 
 const handleHTTPError = (response, z) => {
   if (response.status >= 400) {
@@ -9,9 +10,6 @@ const handleHTTPError = (response, z) => {
 };
 
 const includeApiKeyHeader = (request, z, bundle) => {
-
-  z.console.log(bundle);
-  
   if (bundle.authData.apiKey) {
     request.headers.authorization = bundle.authData.apiKey;
   }
@@ -25,7 +23,7 @@ const App = {
   version: require('./package.json').version,
   platformVersion: require('zapier-platform-core').version,
 
-  authentication: authentication,
+  authentication: Authentication,
 
   beforeRequest: [
     includeApiKeyHeader
@@ -44,11 +42,12 @@ const App = {
 
   // If you want your searches to show up, you better include it here!
   searches: {
-    [people.key]: people
+    [PeopleSearch.key]: PeopleSearch
   },
 
   // If you want your creates to show up, you better include it here!
   creates: {
+    [ActivityCreate.key]: ActivityCreate,
   }
 };
 

@@ -4,7 +4,7 @@ const App = require('../index');
 
 const appTester = zapier.createAppTester(App);
 
-describe('api key auth app', () => {
+describe('API Key Authhentication', () => {
 
   it('has auth details added to every request', (done) => {
     const bundle = {
