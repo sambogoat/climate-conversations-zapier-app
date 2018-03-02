@@ -1,6 +1,3 @@
-// TODO - UUID Ids to const fields
-// TODO - Verify usage and required values for operation.inputFields
-
 module.exports = {
   key: 'people',
 
@@ -31,22 +28,21 @@ module.exports = {
       };
 
       return z.request(url, options)
-        .then(response => [JSON.parse(response.content)]);
+        .then(response => {
+            // TODO - validations
+            const obj = z.JSON.parse(response.content).records[0];
+            const resp = { "id": obj.id, "createdAt": obj.createdAt, "primaryKey": obj.primaryKey };
+            z.console.log("Person Search Response", resp);
+            return [resp];
+        });
     },
 
-    // In cases where Zapier needs to show an example record to the user, but we are unable to get a live example
-    // from the API, Zapier will fallback to this hard-coded sample. It should reflect the data structure of
-    // returned records, and have obviously dummy values that we can show to any user.
     sample: {
       "id": "d9e505c7-2159-4c61-9a36-6fee0d2c18c7",
       "createdAt": "2017-05-24T08:54:30.189Z",
-      "primaryKey": "bob.smithw@gmail.com"
+      "primaryKey": "bob.smith@gmail.com"
     },
 
-    // If the resource can have fields that are custom on a per-user basis, define a function to fetch the custom
-    // field definitions. The result will be used to augment the sample.
-    // outputFields: () => { return []; }
-    // Alternatively, a static field definition should be provided, to specify labels for the fields
     outputFields: [
       {key: 'id', label: 'ID'},
       {key: 'createdAt', label: 'Created At'},

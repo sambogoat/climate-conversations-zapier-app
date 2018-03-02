@@ -1,21 +1,16 @@
-// TODO - Rename file and test to email_activity
-// TODO - API Urls to central place - Resources?
-
-/* globals describe it */
 const should = require('should');
 
 const zapier = require('zapier-platform-core');
 
 const nock = require('nock');
 
-// Use this to make test calls into your app:
 const App = require('../../index');
 const appTester = zapier.createAppTester(App);
 zapier.tools.env.inject();
 
-describe('Create Activity', () => {
+describe('Create Email Activity', () => {
 
-  it('should create an email activity', done => {
+  it('should create an activity', done => {
 
     const bundle = { 
     	inputData: 

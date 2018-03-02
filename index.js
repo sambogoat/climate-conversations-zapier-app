@@ -1,4 +1,4 @@
-const ActivityCreate = require('./creates/activity');
+const EmailActivityCreate = require('./creates/email_activity');
 const PeopleSearch = require('./searches/people');
 const Authentication = require('./authentication');
 
@@ -16,7 +16,6 @@ const includeApiKeyHeader = (request, z, bundle) => {
   return request;
 };
 
-// Now we can roll up all our behaviors in an App.
 const App = {
   // This is just shorthand to reference the installed dependencies you have. Zapier will
   // need to know these before we can upload
@@ -36,20 +35,16 @@ const App = {
   resources: {
   },
 
-  // If you want your trigger to show up, you better include it here!
   triggers: {
   },
 
-  // If you want your searches to show up, you better include it here!
   searches: {
     [PeopleSearch.key]: PeopleSearch
   },
 
-  // If you want your creates to show up, you better include it here!
   creates: {
-    [ActivityCreate.key]: ActivityCreate,
+    [EmailActivityCreate.key]: EmailActivityCreate,
   }
 };
 
-// Finally, export the app.
 module.exports = App;

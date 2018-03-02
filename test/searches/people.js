@@ -140,8 +140,7 @@ describe('Search People Records', () => {
     appTester(App.searches.people.operation.perform, bundle)
       .then(results => {
         results.length.should.be.equal(1);
-        results[0].records.length.should.be.equal(1);
-        const person = results[0].records[0];
+        const person = results[0];
         person.primaryKey.should.eql('bob.smith@gmail.com');
         person.id.should.eql('a2d7e3d1-ee02-42d0-809d-61699d09f7d6');
         done();

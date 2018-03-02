@@ -20,7 +20,9 @@ module.exports = {
   fields: [
     {key: 'apiKey', label: 'API Key', required: true, type: 'string'}
   ],
-  connectionLabel: '{{bundle.authData.email}}',
+
+  connectionLabel: '{{bundle.authData.apiKey}}',
+
   // The test method allows Zapier to verify that the credentials a user provides are valid. We'll execute this
   // method whenver a user connects their account for the first time.
   test: testAuth
