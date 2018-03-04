@@ -8,9 +8,9 @@ const App = require('../../index');
 const appTester = zapier.createAppTester(App);
 zapier.tools.env.inject();
 
-describe('Create Email Activity', () => {
+describe('Email Activity Resource', () => {
 
-  it('should create an activity', done => {
+  it('should create an email activity', done => {
 
     const bundle = { 
     	inputData: 
@@ -51,7 +51,7 @@ describe('Create Email Activity', () => {
 				}
 			);
 
-    appTester(App.creates.activity.operation.perform, bundle)
+    appTester(App.resources.email_activity.create.operation.perform, bundle)
       .then(results => {
         should.exist(results);
         results.recordId[0].should.eql('a2d7e3d1-ee02-42d0-809d-61699d09f7d6');

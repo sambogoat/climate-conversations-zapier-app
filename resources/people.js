@@ -1,5 +1,5 @@
 // get a single person
-const getPeople = (z, bundle) => {
+const getPerson = (z, bundle) => {
   const responsePromise = z.request({
     url: `https://jsonplaceholder.typicode.com/posts/${bundle.inputData.id}`,
   });
@@ -8,7 +8,7 @@ const getPeople = (z, bundle) => {
 };
 
 // get a list of people
-const listPeoples = (z) => {
+const listPeople = (z) => {
   const responsePromise = z.request({
     url: 'https://jsonplaceholder.typicode.com/posts',
     params: {
@@ -37,7 +37,7 @@ const searchPeople = (z, bundle) => {
 };
 
 // create a person
-const createPeople = (z, bundle) => {
+const createPerson = (z, bundle) => {
   const responsePromise = z.request({
     method: 'POST',
     url: 'https://jsonplaceholder.typicode.com/posts',
@@ -55,31 +55,31 @@ module.exports = {
 
   get: {
     display: {
-      label: 'Get People',
-      description: 'Gets a people.'
+      label: 'Get a Person',
+      description: 'Gets a person record.'
     },
     operation: {
       inputFields: [
         {key: 'id', required: true}
       ],
-      perform: getPeople
+      perform: getPerson
     }
   },
 
   list: {
     display: {
-      label: 'New People',
-      description: 'Lists the peoples.'
+      label: 'Lists People',
+      description: 'Lists the people records.'
     },
     operation: {
-      perform: listPeoples
+      perform: listPeople
     }
   },
 
   search: {
     display: {
       label: 'Find a Person',
-      description: 'Finds a Person by Email Address.'
+      description: 'Finds a Person record by email address.'
     },
     operation: {
       inputFields: [
@@ -106,14 +106,14 @@ module.exports = {
 
   create: {
     display: {
-      label: 'Create People',
-      description: 'Creates a new people.'
+      label: 'Create a Person',
+      description: 'Creates a new Person record.'
     },
     operation: {
       inputFields: [
         {key: 'name', required: true}
       ],
-      perform: createPeople
+      perform: createPerson
     },
   },
 
