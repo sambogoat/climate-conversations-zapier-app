@@ -1,5 +1,5 @@
+const People = require('./resources/people');
 const EmailActivityCreate = require('./creates/email_activity');
-const PeopleSearch = require('./searches/people');
 const Authentication = require('./authentication');
 
 const handleHTTPError = (response, z) => {
@@ -33,13 +33,13 @@ const App = {
   ],
 
   resources: {
+    [People.key]: People,
   },
 
   triggers: {
   },
 
   searches: {
-    [PeopleSearch.key]: PeopleSearch
   },
 
   creates: {

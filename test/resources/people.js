@@ -8,7 +8,7 @@ const App = require('../../index');
 
 const appTester = zapier.createAppTester(App);
 
-describe('Search People Records', () => {
+describe('People Resource', () => {
 
   it('should find a person by email address', (done) => {
 
@@ -137,7 +137,7 @@ describe('Search People Records', () => {
       }
     };
 
-    appTester(App.searches.people.operation.perform, bundle)
+    appTester(App.resources.people.search.operation.perform, bundle)
       .then(results => {
         results.length.should.be.equal(1);
         const person = results[0];
