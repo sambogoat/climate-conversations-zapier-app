@@ -4,12 +4,12 @@ const App = require('../index');
 
 const appTester = zapier.createAppTester(App);
 
-describe('API Key Authhentication', () => {
+describe('API Key Authentication', () => {
 
   it('has auth details added to every request', (done) => {
     const bundle = {
       authData: {
-        apiKey: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50IjoiZGI0NTU3MGQtNmY1NC00MTM4LTk2OTktNjU2YTQzYTY4MTVjIiwiaWF0IjoxNTE4NDc1NDgzfQ.2b12GOdRJ0so70y2OlrptSw8mq6fIWcGptPqBepYSYk'
+        apiKey: process.env.API_KEY
       }
     };
     appTester(App.authentication.test, bundle)
