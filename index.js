@@ -1,3 +1,4 @@
+const Transaction = require('./resources/transaction');
 const Email_Activity = require('./resources/email_activity');
 const People = require('./resources/people');
 const Authentication = require('./authentication');
@@ -33,6 +34,7 @@ const App = {
   ],
 
   resources: {
+    [Transaction.key]: Transaction,
     [Email_Activity.key]: Email_Activity,
     [People.key]: People,
   },
