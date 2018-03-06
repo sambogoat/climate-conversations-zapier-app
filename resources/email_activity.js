@@ -36,12 +36,12 @@ const createEmailActivity = (z, bundle) => {
 
   const createActivityBody = (inputData) => { 
     const body = {
-      "recordId": inputData.recordId,
-      "taxonomyId": "c3dbf9c7-efc4-43ca-83e8-5b4470e58d72",
-      "comment": inputData.message,
-      "date": null,
-      "meta": {
-        "subject": inputData.subject
+      'recordId': inputData.recordId,
+      'taxonomyId': 'c3dbf9c7-efc4-43ca-83e8-5b4470e58d72',
+      'comment': inputData.message,
+      'date': null,
+      'meta': {
+        'subject': inputData.subject
       }
     };
     return body;
@@ -59,7 +59,7 @@ const createEmailActivity = (z, bundle) => {
   return responsePromise
     .then(response => { 
       const json = z.JSON.parse(response.content);
-      return { "id": json.id, "comment": json.comment, "recordId": json.recordId, "meta": json.meta };
+      return { 'id': json.id, 'comment': json.comment, 'recordId': json.recordId, 'meta': json.meta };
     });
 };
 
@@ -67,41 +67,41 @@ module.exports = {
   key: 'email_activity',
   noun: 'Email Activity',
 
-  get: {
-    display: {
-      label: 'Get an Email Activity',
-      description: 'Gets a email activity.'
-    },
-    operation: {
-      inputFields: [
-        {key: 'id', required: true}
-      ],
-      perform: getEmailActivity
-    }
-  },
+  // get: {
+  //   display: {
+  //     label: 'Get an Email Activity',
+  //     description: 'Gets a email activity.'
+  //   },
+  //   operation: {
+  //     inputFields: [
+  //       {key: 'id', required: true}
+  //     ],
+  //     perform: getEmailActivity
+  //   }
+  // },
 
-  list: {
-    display: {
-      label: 'List Email Activities',
-      description: 'Lists email activities.'
-    },
-    operation: {
-      perform: listEmailActivities
-    }
-  },
+  // list: {
+  //   display: {
+  //     label: 'New Activities',
+  //     description: 'Lists email activities.'
+  //   },
+  //   operation: {
+  //     perform: listEmailActivities
+  //   }
+  // },
 
-  search: {
-    display: {
-      label: 'Find Email Activity',
-      description: 'Finds an email activity by id.'
-    },
-    operation: {
-      inputFields: [
-        {key: 'name', required: true}
-      ],
-      perform: searchEmailActivities
-    },
-  },
+  // search: {
+  //   display: {
+  //     label: 'Find an Email Activity',
+  //     description: 'Finds an email activity by id.'
+  //   },
+  //   operation: {
+  //     inputFields: [
+  //       {key: 'name', required: true}
+  //     ],
+  //     perform: searchEmailActivities
+  //   },
+  // },
 
   create: {
     display: {
@@ -130,11 +130,10 @@ module.exports = {
           helpText: 'The email subject.'
         }
       ],
-
       perform: createEmailActivity,
 
       sample: {
-        "id": "439b5d4f-e1a8-4546-87da-0bf4cb6ca848"
+        'id': '439b5d4f-e1a8-4546-87da-0bf4cb6ca848'
       },
 
       outputFields: [

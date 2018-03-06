@@ -1,3 +1,4 @@
+const Taxonomy = require('./resources/taxonomy');
 const Transaction = require('./resources/transaction');
 const Email_Activity = require('./resources/email_activity');
 const People = require('./resources/people');
@@ -34,6 +35,7 @@ const App = {
   ],
 
   resources: {
+    [Taxonomy.key]: Taxonomy,
     [Transaction.key]: Transaction,
     [Email_Activity.key]: Email_Activity,
     [People.key]: People,

@@ -32,7 +32,7 @@ const searchPeople = (z, bundle) => {
     .then(response => {
         // TODO - validations
         const json = z.JSON.parse(response.content).records[0];
-        return [{ "id": json.id, "createdAt": json.createdAt, "primaryKey": json.primaryKey }];
+        return [{ 'id': json.id, 'createdAt': json.createdAt, 'primaryKey': json.primaryKey }];
     });
 };
 
@@ -53,28 +53,28 @@ module.exports = {
   key: 'people',
   noun: 'People',
 
-  get: {
-    display: {
-      label: 'Get a Person',
-      description: 'Gets a person record.'
-    },
-    operation: {
-      inputFields: [
-        {key: 'id', required: true}
-      ],
-      perform: getPerson
-    }
-  },
+  // get: {
+  //   display: {
+  //     label: 'Get a Person',
+  //     description: 'Gets a person record.'
+  //   },
+  //   operation: {
+  //     inputFields: [
+  //       {key: 'id', required: true}
+  //     ],
+  //     perform: getPerson
+  //   }
+  // },
 
-  list: {
-    display: {
-      label: 'Lists People',
-      description: 'Lists the people records.'
-    },
-    operation: {
-      perform: listPeople
-    }
-  },
+  // list: {
+  //   display: {
+  //     label: 'New People',
+  //     description: 'New people records.'
+  //   },
+  //   operation: {
+  //     perform: listPeople
+  //   }
+  // },
 
   search: {
     display: {
@@ -92,38 +92,28 @@ module.exports = {
         ],
       perform: searchPeople,
       sample: {
-        "id": "d9e505c7-2159-4c61-9a36-6fee0d2c18c7",
-        "createdAt": "2017-05-24T08:54:30.189Z",
-        "primaryKey": "bob.smith@gmail.com"
+        'id': 'd9e505c7-2159-4c61-9a36-6fee0d2c18c7',
+        'createdAt': '2017-05-24T08:54:30.189Z',
+        'primaryKey': 'bob.smith@gmail.com'
       },
       outputFields: [
         {key: 'id', label: 'ID'},
         {key: 'createdAt', label: 'Created At'},
         {key: 'primaryKey', label: 'Email Address'}
       ]
-    },
-  },
+    }
+  // },
 
-  create: {
-    display: {
-      label: 'Create a Person',
-      description: 'Creates a new Person record.'
-    },
-    operation: {
-      inputFields: [
-        {key: 'name', required: true}
-      ],
-      perform: createPerson
-    },
-  },
-
-  sample: {
-    id: 1,
-    name: 'Test'
-  },
-
-  outputFields: [
-    {key: 'id', label: 'ID'},
-    {key: 'name', label: 'Name'}
-  ]
+  // create: {
+  //   display: {
+  //     label: 'Create a Person',
+  //     description: 'Creates a new Person record.'
+  //   },
+  //   operation: {
+  //     inputFields: [
+  //       {key: 'name', required: true}
+  //     ],
+  //     perform: createPerson
+  //   },
+  }
 };
