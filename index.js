@@ -1,7 +1,7 @@
 const Taxonomy = require('./resources/taxonomy');
 const Transaction = require('./resources/transaction');
 const Email_Activity = require('./resources/email_activity');
-const People = require('./resources/people');
+const Person = require('./resources/person');
 const Authentication = require('./authentication');
 
 const handleHTTPError = (response, z) => {
@@ -19,9 +19,9 @@ const includeApiKeyHeader = (request, z, bundle) => {
 };
 
 const App = {
-  // This is just shorthand to reference the installed dependencies you have. Zapier will
-  // need to know these before we can upload
+
   version: require('./package.json').version,
+
   platformVersion: require('zapier-platform-core').version,
 
   authentication: Authentication,
@@ -38,16 +38,7 @@ const App = {
     [Taxonomy.key]: Taxonomy,
     [Transaction.key]: Transaction,
     [Email_Activity.key]: Email_Activity,
-    [People.key]: People,
-  },
-
-  triggers: {
-  },
-
-  searches: {
-  },
-
-  creates: {
+    [Person.key]: Person,
   }
 };
 
